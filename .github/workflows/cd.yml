@@ -38,5 +38,5 @@ jobs:
 
       - name: deploy to k8s
         run: |-
-          aws eks update-kubeconfig --region us-east-1 --name eks
+          aws eks update-kubeconfig --region eu-north-1 --name eks
           kubectl apply -f ./k8s/deployment.yaml
