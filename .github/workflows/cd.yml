@@ -18,7 +18,10 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-east-1
+          aws-region: eu-north-1
+
+      - name: set up kubectl
+        uses: azure/setup-kubectl@v4
 
       - name: set up Docker Buildx
         uses: docker/setup-buildx-action@v3
@@ -36,7 +39,8 @@ jobs:
           push: true
           tags: omarmohamed74/app:${{ github.ref_name }}
 
+      - name: update kubeconfig
+        run: aws eks update-kubeconfig --region eu-north-1 --name my-cluster
+
       - name: deploy to k8s
-        run: |-
-          aws eks update-kubeconfig --region eu-north-1 --name my-cluster
-          kubectl apply -f ./k8s/deployment.yaml
+        run: kubectl apply -f ./k8s/deployment.yaml
