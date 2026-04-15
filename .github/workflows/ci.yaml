@@ -1,22 +1,28 @@
 name: ci-workflow
+
 on:
- pull_request:
-   branches:
-     - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
- CI-workflow-job:
-   runs-on: ubuntu-latest
-   steps:
+  CI-workflow-job:
+    runs-on: ubuntu-latest
 
-     - name: checkout repository
-       uses: actions/checkout@v4
-    
-     - name: build app
-       run: mvn clean package
-       shell: bash 
+    steps:
+      - name: checkout repository
+        uses: actions/checkout@v4
 
-     - name: test the app
-       run: "mvn test"
-       shell: bash
+      - name: setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 11
 
+      - name: build app
+        run: mvn clean package
+        shell: bash
+
+      - name: test the app
+        run: mvn test
+        shell: bash
