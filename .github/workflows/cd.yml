@@ -1,4 +1,5 @@
 name: cd-workflow
+
 on:
   push:
     branches:
@@ -35,7 +36,7 @@ jobs:
           push: true
           tags: omarmohamed74/app:${{ github.ref_name }}
 
-       - name: deploy to k8s
-         run: |-
+      - name: deploy to k8s
+        run: |-
           aws eks update-kubeconfig --region us-east-1 --name eks
           kubectl apply -f ./k8s/deployment.yaml
