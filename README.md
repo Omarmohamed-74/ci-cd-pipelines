@@ -2,7 +2,7 @@
 
 ## Overview
 
-This project demonstrates a simple Java application integrated with a CI/CD pipeline using GitHub Actions, Docker, Docker Hub, and AWS EKS (Kubernetes).
+This project demonstrates a simple Java application integrated with a CI/CD pipeline using GitHub Actions, Docker , Docker Hub, and AWS EKS (Kubernetes).
 
 ## Workflow
 
